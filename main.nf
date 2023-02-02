@@ -24,6 +24,8 @@ process krona {
 
     publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${row.cid}_kronaplot.html"
 
+    conda 'krona'
+
     input:
         tuple val(row),  path(k2_report), path(k2_out)
     
@@ -32,7 +34,7 @@ process krona {
 
     """
     ktUpdateTaxonomy.sh
-    ktImportTaxonomy -q 2 -t 3 ${k2_report} -o ${row.cid}_kronaplot.html
+    ktImportTaxonomy -t 4 ${k2_report} -o ${row.cid}_kronaplot.html
     """
 }
 
