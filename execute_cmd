@@ -1,0 +1,1 @@
+!nextflow run BioWilko/mscape_demo_nf --quiet -latest --k2_db /shared/mscape/k2_dbs/PlusPF/ --outdir . --metadata s3://mscape-fastq-store/metadata.csv
