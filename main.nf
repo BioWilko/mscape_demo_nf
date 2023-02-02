@@ -2,9 +2,9 @@ nextflow.enable.dsl=2
 
 process kraken2 {
 
-    cpus 8
+    cpus 20
 
-    publishDir "${params.outdir}", pattern: "${row.cid}.k2*", mode: 'copy'
+    publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${row.cid}.k2*", mode: 'copy'
 
     input:
         tuple val(row), path(fastq_gz)
@@ -20,6 +20,21 @@ process kraken2 {
 
 }
 
+process krona {
+
+    publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${row.cid}_kronaplot.html"
+
+    input:
+        tuple val(row),  path(k2_report), path(k2_out)
+    
+    output:
+        path("${row.cid}_kronaplot.html")
+
+    """
+    ImportTaxonomy.pl -q 2 -t 3 ${k2_report} -o ${row.cid}_kronaplot.html
+    """
+}
+
 workflow {
 
     Channel
@@ -32,5 +47,7 @@ workflow {
         .set { metadata_ch }
 
     kraken2(metadata_ch)
+
+    krona()
     
 }
