@@ -1,0 +1,18 @@
+!nextflow run BioWilko/mscape_demo_nf --quiet -latest -w /shared/team-mscape/nxf_work/ --k2_db /shared/mscape/k2_dbs/PlusPF/ --outdir ./outdir --metadata s3://mscape-fastq-store/metadata.csv
+
+from IPython.display import IFrame
+import glob
+import time
+
+already_printed = []
+
+while True:
+    krona_plots = glob.glob("outdir/krona/*.html")
+    for i in krona_plots:
+        print(i)
+        if i not in already_printed:
+            display(IFrame(i, width=800, height=600))
+            already_printed.append(i)
+        
+    
+    time.sleep(10)

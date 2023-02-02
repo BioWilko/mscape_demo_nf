@@ -24,6 +24,8 @@ process krona {
 
     publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${row.cid}_kronaplot.html", mode: "copy"
 
+    maxForks 1
+
     input:
         tuple val(row),  path(k2_report), path(k2_out)
     
@@ -32,7 +34,7 @@ process krona {
 
     """
     ktUpdateTaxonomy.sh
-    ktImportTaxonomy -m 3 -t 5 ${k2_report} -o ${row.cid}_kronaplot.html
+    ktImportTaxonomy -m 3 -t 5 -o ${row.cid}_kronaplot.html ${k2_report}
     """
 }
 
