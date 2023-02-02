@@ -4,7 +4,7 @@ process kraken2 {
 
     cpus 20
 
-    publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${row.cid}.k2*", mode: 'copy'
+    publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${row.cid}.k2*", mode: "copy"
 
     input:
         tuple val(row), path(fastq_gz)
@@ -22,7 +22,7 @@ process kraken2 {
 
 process krona {
 
-    publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${row.cid}_kronaplot.html"
+    publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${row.cid}_kronaplot.html", mode: "copy"
 
     input:
         tuple val(row),  path(k2_report), path(k2_out)
