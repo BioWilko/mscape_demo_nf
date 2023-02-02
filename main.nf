@@ -24,8 +24,6 @@ process krona {
 
     publishDir "${params.outdir}/${task.process.replaceAll(":","_")}", pattern: "${row.cid}_kronaplot.html"
 
-    conda 'krona'
-
     input:
         tuple val(row),  path(k2_report), path(k2_out)
     
