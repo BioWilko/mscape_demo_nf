@@ -31,7 +31,8 @@ process krona {
         path("${row.cid}_kronaplot.html")
 
     """
-    ImportTaxonomy.pl -q 2 -t 3 ${k2_report} -o ${row.cid}_kronaplot.html
+    ktUpdateTaxonomy.sh
+    ktImportTaxonomy -q 2 -t 3 ${k2_report} -o ${row.cid}_kronaplot.html
     """
 }
 
