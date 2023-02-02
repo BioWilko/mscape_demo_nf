@@ -2,8 +2,6 @@ nextflow.enable.dsl=2
 
 process kraken2 {
 
-    conda '$baseDir/environments/kraken2.yaml'
-
     cpus 8
 
     publishDir "${params.outdir}", pattern: "${row.cid}.k2*", mode: 'copy'
