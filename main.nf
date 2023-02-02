@@ -48,6 +48,6 @@ workflow {
 
     kraken2(metadata_ch)
 
-    krona()
+    krona(kraken2.out)
     
 }
