@@ -2,7 +2,7 @@ nextflow.enable.dsl=2
 
 process kraken2 {
 
-    conda "$baseDir/environments/kraken2.yaml"
+    conda '$baseDir/environments/kraken2.yaml'
 
     cpus 8
 
