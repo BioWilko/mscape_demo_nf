@@ -32,7 +32,7 @@ process krona {
 
     """
     ktUpdateTaxonomy.sh
-    ktImportTaxonomy ${k2_report} -o ${row.cid}_kronaplot.html
+    ktImportTaxonomy -t 5 ${k2_report} -o ${row.cid}_kronaplot.html
     """
 }
 
